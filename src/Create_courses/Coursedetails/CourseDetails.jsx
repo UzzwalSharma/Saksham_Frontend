@@ -151,7 +151,7 @@ const CourseDetails = () => {
     const fetchCourseDetails = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/course/${courseid}`
+          `https://saksham-backend-ul8k.onrender.com/api/course/${courseid}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch course details");
