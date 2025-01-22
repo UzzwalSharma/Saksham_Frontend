@@ -92,7 +92,7 @@ const [loading , setLoading] = useState(false)
       const data = await response.json();
       if (response.ok) {
         console.log('Generated Course ID:', data.courseId); // Log the correct courseId
-        navigate(`/createcourse/${data.courseId}`); // Navigate to the dynamic route
+        navigate(`https://saksham-backend-ul8k.onrender.com/createcourse/${data.courseId}`); // Navigate to the dynamic route
       } else {
         alert(`Failed to save course layout: ${data.error}`);
       }
