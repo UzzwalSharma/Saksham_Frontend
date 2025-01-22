@@ -39,15 +39,34 @@ const [loading , setLoading] = useState(false)
     try {
       setLoading(true);
   
-      const prompt = `Generate a course tutorial with the following details:
-        Include fields like Course Name, Description, Chapters (with names, about sections, and durations) in JSON format.
-        Category: ${courseData.category || "Not provided"}
-        Topic: ${courseData.topic || "Not provided"}
-        Description: ${courseData.description || "Not provided"}
-        Level: ${courseData.difficulty || "Not provided"}
-        Duration: ${courseData.duration || "Not provided"} hours
-        Number of Chapters: ${courseData.chapters || "Not provided"}
-      `;
+      const prompt = `Generate a course tutorial with the following details in the exact format required by the backend:
+      The response should be a JSON object with the following structure:
+      {
+        "Course Name": "Course Name Here",
+        "Description": "Course Description Here",
+        "Category": "Category Here",
+        "Topic": "Topic Here",
+        "Level": "Level Here",
+        "Duration": "Duration Here",
+        "Number of Chapters": Number of chapters,
+        "Chapters": [
+          {
+            "Chapter Name": "Chapter Name Here",
+            "About": "Chapter Description Here",
+            "Duration": "Chapter Duration Here"
+          }
+        ]
+      }
+    
+      The following values should be used in the course layout:
+      Category: ${courseData.category || "Not provided"}
+      Topic: ${courseData.topic || "Not provided"}
+      Description: ${courseData.description || "Not provided"}
+      Level: ${courseData.difficulty || "Not provided"}
+      Duration: ${courseData.duration || "Not provided"} hours
+      Number of Chapters: ${courseData.chapters || "Not provided"}
+    `;
+    
   
       console.log("Generated Prompt:", prompt);
   
