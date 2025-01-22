@@ -150,14 +150,14 @@ function Options() {
         </div>
 
         {/* Submit Button */}
-        <div className="mt-8 flex justify-center">
+        {/* <div className="mt-8 flex justify-center">
           <button
             onClick={handleFormSubmit}
             className="bg-[#1ddbb2] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#17a885] transition duration-200"
           >
             Submit
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
