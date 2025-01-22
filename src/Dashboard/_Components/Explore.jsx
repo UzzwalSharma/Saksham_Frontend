@@ -41,7 +41,7 @@ const features = [
 ];
 
 const notify = (feature) => {
-  toast.success(`You’ll be notified about ${feature}!`, {
+  toast.success(`You’ll be notified about ${feature}! when they got released`, {
     style: {
       border: "1px solid #2ecc71",
       padding: "16px",
@@ -82,7 +82,7 @@ const UpcomingFeatures = () => {
               </h3>
               <p className="text-gray-600 mb-4">{feature.description}</p>
               <button
-                onClick={() => notify(feature.title)}
+                onClick={() => notify(feature.title)} 
                 className="bg-gradient-to-r from-[#1ddbb2] to-[#ffcc00] px-4 py-2 rounded hover:bg-green-600"
               >
                 Notify Me
