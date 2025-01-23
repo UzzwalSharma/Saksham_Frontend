@@ -8,13 +8,24 @@ import {
   DocumentTextIcon,
 } from "@heroicons/react/24/outline";
 import ReactConfetti from "react-confetti";
-import { PlayIcon } from "lucide-react";
+import { PlayIcon, CopyIcon } from "lucide-react";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  WhatsappIcon,
+} from "react-share";
 
 const Finish = () => {
   const { courseId } = useParams(); // Get courseId from the URL params
   const [courseData, setCourseData] = useState(null);
   const [confetti, setConfetti] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [copyMessage, setCopyMessage] = useState("");
 
   // Handle window resizing for confetti
   useEffect(() => {
@@ -42,12 +53,33 @@ const Finish = () => {
       .catch((error) => console.error("Error fetching course data:", error));
   }, [courseId]);
 
+  const handleCopyLink = () => {
+    const shareUrl = `${window.location.origin}/course/${courseId}`;
+    const message = `🚀 Check out this amazing course I Just created on Saksham: Your personalized AI course platform! Explore it here: ${shareUrl}`;
+    
+    navigator.clipboard
+      .writeText(message)
+      .then(() => {
+        setCopyMessage("🚀 Message copied! Spread the word about Saksham!");
+        setTimeout(() => setCopyMessage(""), 3000); // Clear message after 3 seconds
+      })
+      .catch((error) => {
+        console.error("Failed to copy message:", error);
+        setCopyMessage("Failed to copy message");
+      });
+  };
+  
+
   if (!courseData) {
-    return <div>
-     <h1>
-     Fetching data from backend...
-      </h1></div>; // Display loading state until data is fetched
+    return (
+      <div>
+        <h1>Fetching data from backend...</h1>
+      </div>
+    );
   }
+
+  const shareUrl = `${window.location.origin}/course/${courseId}`;
+  const shareTitle = `Check out this amazing course: ${courseData.courseName}`;
 
   return (
     <div className="h-screen bg-gray-50 flex items-center justify-center p-6">
@@ -57,7 +89,7 @@ const Finish = () => {
         {/* Course Thumbnail */}
         <div className="md:w-1/2 flex justify-center">
           <img
-            src={courseData.thumbnail || "/10631818.jpg"} // Use dynamic thumbnail if available
+            src={courseData.thumbnail || "/10631818.jpg"}
             alt="Course Thumbnail"
             className="rounded-2xl shadow-lg border-4 border-gray-200 max-w-full h-auto"
           />
@@ -94,19 +126,31 @@ const Finish = () => {
             </div>
           </div>
 
-          {/* Chapters */}
-          {/* <div className="space-y-4">
-            <h2 className="text-xl font-bold text-black">Chapters:</h2>
-            <ul className="space-y-2">
-              {courseData.chapters.map((chapter, index) => (
-                <li key={chapter.chapter_id} className="border-b border-gray-300 pb-2">
-                  <h3 className="text-lg font-bold text-black">{index + 1}. {chapter.chapterName}</h3>
-                  <p className="text-gray-600 text-sm">{chapter.about}</p>
-                  <span className="text-gray-500 text-xs">Duration: {chapter.duration}</span>
-                </li>
-              ))}
-            </ul>
-          </div> */}
+          {/* Share with Friends */}
+          <div className="space-y-4">
+            <h2 className="text-xl font-bold text-black">Share with Friends</h2>
+            <div className="flex items-center justify-between">
+              <div className="flex gap-4">
+                <FacebookShareButton url={shareUrl} quote={shareTitle}>
+                  <FacebookIcon size={32} round />
+                </FacebookShareButton>
+                <TwitterShareButton url={shareUrl} title={shareTitle}>
+                  <TwitterIcon size={32} round />
+                </TwitterShareButton>
+                <LinkedinShareButton url={shareUrl} title={shareTitle} summary={courseData.description}>
+                  <LinkedinIcon size={32} round />
+                </LinkedinShareButton>
+                <WhatsappShareButton url={shareUrl} title={shareTitle}>
+                  <WhatsappIcon size={32} round />
+                </WhatsappShareButton>
+              </div>
+              <button onClick={handleCopyLink} className="flex items-center gap-2 px-3 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+                <CopyIcon className="h-5 w-5" />
+                <span>Copy URL</span>
+              </button>
+            </div>
+            {copyMessage && <p className="text-sm text-green-600">{copyMessage}</p>}
+          </div>
 
           {/* Action Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
