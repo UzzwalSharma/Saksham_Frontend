@@ -54,7 +54,7 @@ const Finish = () => {
   }, [courseId]);
 
   const handleCopyLink = () => {
-    const shareUrl = `${window.location.origin}/createcourse/${courseId}`;
+    const shareUrl = `${window.location.origin}/createcourse/finish/${courseId}`;
     const message = `🚀 Check out this amazing course I Just created on Saksham: Your personalized AI course platform! Explore it here: ${shareUrl}`;
     
     navigator.clipboard
