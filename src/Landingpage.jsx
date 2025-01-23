@@ -5,6 +5,7 @@ import Features from './Features'
 import HowItWorks from './Workflow'
 import Footer from './Footer'
 import FAQ from './FAQS'
+import Demo from './Demo'
 function Landingpage() {
   return (
     <div>
@@ -12,6 +13,7 @@ function Landingpage() {
      <Hero/>
      <Features/>
      <HowItWorks/>
+     <Demo/>
      <FAQ/>
     <Footer/>
     </div>

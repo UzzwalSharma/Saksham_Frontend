@@ -10,7 +10,7 @@ const FAQ = () => {
   };
 
   return (
-    <div id="testimonials">
+    <div >
       <div className="px-6 py-12 bg-gray-100">
         <h2 className="text-3xl font-bold text-center text-emerald-600 mb-8">
           Frequently Asked Questions

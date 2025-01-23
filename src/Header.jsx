@@ -64,7 +64,7 @@ function Header() {
           duration={500}
           className={`px-6 py-2 text-lg rounded-lg transition-all ${theme === 'dark' ? 'text-gold-500 hover:text-gold-300' : 'text-black hover:bg-gray-200'}`}
         >
-          FAQs
+         Watch Demo
         </ScrollLink>
         <Link
           to="getintouch"
