@@ -1,6 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useCourse } from '/src/Context/Coursecontext'; // Import the useCourse hook to access context
-import { FaFlask, FaCalculator, FaLanguage, FaCode, FaPalette, FaBriefcase, FaHeartbeat, FaTools, FaGuitar, FaBook } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import { useCourse } from "/src/Context/Coursecontext"; // Import the useCourse hook to access context
+import {
+  FaFlask,
+  FaCalculator,
+  FaLanguage,
+  FaCode,
+  FaPalette,
+  FaBriefcase,
+  FaHeartbeat,
+  FaTools,
+  FaGuitar,
+  FaBook,
+  FaRocket,
+  FaMusic,
+  FaTree,
+  FaMedkit,
+} from "react-icons/fa";
 
 function Select_Category() {
   const { courseData, updateCourseData } = useCourse(); // Access context data and update function
@@ -18,10 +33,14 @@ function Select_Category() {
     { id: 8, name: "Skill Development", icon: <FaTools />, desc: "Develop essential skills for personal and professional growth." },
     { id: 9, name: "Hobbies & Interests", icon: <FaGuitar />, desc: "Pursue your passions and hobbies." },
     { id: 10, name: "Test Preparation", icon: <FaBook />, desc: "Prepare for exams with curated courses and resources." },
+    { id: 11, name: "Astronomy", icon: <FaRocket />, desc: "Dive into the universe and its fascinating mysteries." },
+    { id: 12, name: "Music & Performance", icon: <FaMusic />, desc: "Learn to play instruments or refine your musical skills." },
+    { id: 13, name: "Environment & Sustainability", icon: <FaTree />, desc: "Explore how to protect our planet and live sustainably." },
+    { id: 14, name: "Healthcare & Medicine", icon: <FaMedkit />, desc: "Discover advancements in healthcare and medicine." },
   ];
 
   const handleCategoryClick = (category) => {
-    updateCourseData('category', category.name); // Update context with selected category
+    updateCourseData("category", category.name); // Update context with selected category
     setSelectedCategory(category.name); // Update local state to reflect the selected category
   };
 
@@ -38,15 +57,22 @@ function Select_Category() {
         {categories.map((category) => (
           <div
             key={category.id}
-            className={`flex flex-col items-center bg-white shadow-lg border rounded-lg p-6 cursor-pointer transition-all duration-300 ease-in-out transform ${
+            className={`relative flex flex-col items-center bg-white shadow-lg border rounded-lg p-6 cursor-pointer transition-all duration-300 ease-in-out transform ${
               selectedCategory === category.name
-                ? 'border-[#1ddbb2] bg-[#acf9e2] scale-105 z-10' // Highlight selected category
-                : 'hover:shadow-xl hover:border-[#1ddbb2] hover:bg-[#f1f1f1] hover:scale-105'
+                ? "border-[#1ddbb2] bg-[#acf9e2] scale-105 z-10" // Highlight selected category
+                : "hover:shadow-xl hover:border-[#1ddbb2] hover:bg-[#f1f1f1] hover:scale-105"
             }`}
             onClick={() => handleCategoryClick(category)} // Add onClick event handler
           >
+            {selectedCategory === category.name && (
+              <div className="absolute top-2 right-2 bg-[#1ddbb2] text-white text-xs font-bold py-1 px-3 rounded-full shadow-md">
+                Selected
+              </div>
+            )}
             <div className="text-4xl text-[#1ddbb2] mb-3">{category.icon}</div>
-            <h3 className="text-lg font-semibold text-center mb-2">{category.name}</h3>
+            <h3 className="text-lg font-semibold text-center mb-2">
+              {category.name}
+            </h3>
             <p className="text-sm text-gray-600 text-center">{category.desc}</p>
           </div>
         ))}
