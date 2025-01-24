@@ -20,7 +20,8 @@ import { Toaster } from 'react-hot-toast';
 import AuthNotifier from "./Authentication/AuthNotifier";
 import GetInTouch from "./Dashboard/_Components/HelperComponents/GetInTouch";
 import { ThemeProvider } from "/src/components/ui/theme-provider.jsx"
-
+import Warning from "/src/Warning .jsx"
+import Terms from "/src/Terms.jsx"
 // import CoursesList from "./Create_courses/Coursedetails/_Components/Courselist";
 function App() {
   return (
@@ -36,6 +37,8 @@ function App() {
           <Route path="/" element={<Landingpage />} />
 {/* Helper components */}
 <Route path="/Getintouch" element={<GetInTouch/>}/>
+<Route path="/Policy" element={<Warning/>}/>
+<Route path="/terms" element={<Terms/>}/>
           {/* Dashboard route with persistent layout */}
           <Route path="/dashboard"   element={
               <ProtectedRoute>
